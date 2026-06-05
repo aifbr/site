@@ -1,0 +1,880 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>AIFBR Advisory - Diagnóstico IA 48h</title>
+    <meta
+      name="description"
+      content="Diagnóstico em 48h para mapear gargalos, estimar custo invisível e priorizar quick wins de IA aplicáveis em 30 dias."
+    >
+    <style>
+      :root {
+        --navy: #111827;
+        --navy-soft: #1c2534;
+        --paper: #fbfaf7;
+        --porcelain: #f4f1e9;
+        --line: #d8d3c8;
+        --gold: #b89b5e;
+        --gold-soft: #e7d8b5;
+        --copper: #b86f3f;
+        --ink: #1f2937;
+        --muted: #6b7280;
+        --white: #ffffff;
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.5;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        border-bottom: 1px solid rgba(216, 211, 200, .28);
+        background: rgba(17, 24, 39, .94);
+        color: var(--paper);
+        padding: 14px 32px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        min-width: 0;
+        text-decoration: none;
+      }
+
+      .mark {
+        display: grid;
+        width: 28px;
+        height: 28px;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
+        border: 1px solid rgba(251, 250, 247, .18);
+        border-radius: 7px;
+        padding: 3px;
+      }
+
+      .mark span {
+        border-radius: 2px;
+        background: rgba(251, 250, 247, .86);
+      }
+
+      .mark span:nth-child(5) {
+        background: var(--gold);
+      }
+
+      .mark span:nth-child(9) {
+        background: var(--copper);
+      }
+
+      .brand-name {
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+      }
+
+      .nav-links a {
+        color: rgba(251, 250, 247, .76);
+        font-size: 13px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .nav-links a:hover {
+        color: var(--gold-soft);
+      }
+
+      .hero {
+        position: relative;
+        overflow: hidden;
+        min-height: 76vh;
+        display: flex;
+        align-items: center;
+        background: var(--navy);
+        color: var(--paper);
+        padding: 96px 32px 76px;
+      }
+
+      .hero-map {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        color: rgba(251, 250, 247, .3);
+        opacity: .78;
+        pointer-events: none;
+        transform: translateX(32%);
+        -webkit-mask-image: linear-gradient(90deg, transparent 0, transparent 18%, #000 42%, #000 100%);
+        mask-image: linear-gradient(90deg, transparent 0, transparent 18%, #000 42%, #000 100%);
+      }
+
+      .hero-content {
+        position: relative;
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .hero p,
+      .hero h1 {
+        margin-top: 0;
+      }
+
+      .service {
+        margin-bottom: 18px;
+        color: var(--gold-soft);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      h1 {
+        max-width: 760px;
+        margin-bottom: 22px;
+        font-size: 72px;
+        line-height: 1;
+      }
+
+      .hero-lead {
+        max-width: 680px;
+        margin-bottom: 28px;
+        color: rgba(251, 250, 247, .82);
+        font-size: 22px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 44px;
+        border: 1px solid transparent;
+        border-radius: var(--radius);
+        padding: 0 18px;
+        font-size: 14px;
+        font-weight: 700;
+        text-decoration: none;
+      }
+
+      .button-primary {
+        background: var(--gold);
+        color: var(--navy);
+      }
+
+      .button-secondary {
+        border-color: rgba(251, 250, 247, .28);
+        color: var(--paper);
+      }
+
+      .button-outline {
+        border-color: var(--line);
+        color: var(--navy);
+      }
+
+      .hero-note {
+        color: rgba(251, 250, 247, .62);
+        font-size: 14px;
+      }
+
+      section {
+        padding: 72px 32px;
+      }
+
+      .band {
+        background: var(--porcelain);
+      }
+
+      .dark-band {
+        background: var(--navy);
+        color: var(--paper);
+      }
+
+      .inner {
+        width: min(1120px, 100%);
+        margin: 0 auto;
+      }
+
+      .section-head {
+        display: grid;
+        grid-template-columns: minmax(180px, 280px) minmax(0, 1fr);
+        gap: 52px;
+        align-items: start;
+        margin-bottom: 32px;
+      }
+
+      .section-label {
+        color: var(--copper);
+        font-size: 13px;
+        font-weight: 700;
+      }
+
+      .dark-band .section-label {
+        color: var(--gold-soft);
+      }
+
+      h2 {
+        margin: 0;
+        color: var(--navy);
+        font-size: 42px;
+        line-height: 1.08;
+      }
+
+      .dark-band h2 {
+        color: var(--paper);
+      }
+
+      .section-copy {
+        max-width: 760px;
+        margin: 12px 0 0;
+        color: var(--muted);
+        font-size: 18px;
+      }
+
+      .dark-band .section-copy {
+        color: rgba(251, 250, 247, .72);
+      }
+
+      .rows {
+        border-top: 1px solid var(--line);
+      }
+
+      .row {
+        display: grid;
+        grid-template-columns: 220px minmax(0, 1fr);
+        gap: 32px;
+        border-bottom: 1px solid var(--line);
+        padding: 22px 0;
+      }
+
+      .row h3,
+      .timeline h3,
+      .price h3 {
+        margin: 0;
+        color: var(--navy);
+        font-size: 18px;
+      }
+
+      .row p,
+      .timeline p,
+      .price p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .offer-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 360px);
+        gap: 28px;
+        align-items: stretch;
+      }
+
+      .offer-copy {
+        border-left: 3px solid var(--gold);
+        padding-left: 22px;
+      }
+
+      .offer-copy p {
+        max-width: 700px;
+        margin: 0;
+        color: var(--ink);
+        font-size: 24px;
+        line-height: 1.32;
+      }
+
+      .metric-list {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+      }
+
+      .metric {
+        display: flex;
+        justify-content: space-between;
+        gap: 16px;
+        border-bottom: 1px solid var(--line);
+        padding: 16px;
+      }
+
+      .metric:last-child {
+        border-bottom: 0;
+      }
+
+      .metric span {
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .metric strong {
+        color: var(--navy);
+        text-align: right;
+      }
+
+      .timeline {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1px;
+        background: rgba(251, 250, 247, .18);
+        border: 1px solid rgba(251, 250, 247, .18);
+      }
+
+      .day {
+        background: var(--navy-soft);
+        padding: 28px;
+      }
+
+      .day h3 {
+        color: var(--gold-soft);
+      }
+
+      .day p {
+        color: rgba(251, 250, 247, .72);
+        margin-top: 10px;
+      }
+
+      .day ul {
+        margin: 18px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .day li {
+        border-top: 1px solid rgba(251, 250, 247, .14);
+        color: rgba(251, 250, 247, .86);
+        padding: 11px 0;
+      }
+
+      .gargalos {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+
+      .gargalo {
+        min-height: 150px;
+        background: var(--paper);
+        padding: 22px;
+      }
+
+      .gargalo strong {
+        display: block;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .gargalo span {
+        color: var(--muted);
+      }
+
+      .deliverables {
+        columns: 2;
+        column-gap: 56px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .deliverables li {
+        break-inside: avoid;
+        border-top: 1px solid var(--line);
+        padding: 16px 0;
+      }
+
+      .deliverables strong {
+        display: block;
+        color: var(--navy);
+        margin-bottom: 4px;
+      }
+
+      .deliverables span {
+        color: var(--muted);
+      }
+
+      .price {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(240px, 340px);
+        gap: 32px;
+        align-items: end;
+        border-top: 1px solid rgba(251, 250, 247, .22);
+        border-bottom: 1px solid rgba(251, 250, 247, .22);
+        padding: 28px 0;
+      }
+
+      .price h3 {
+        color: var(--paper);
+        font-size: 28px;
+      }
+
+      .price p {
+        color: rgba(251, 250, 247, .72);
+        margin-top: 8px;
+      }
+
+      .price-value {
+        color: var(--gold-soft);
+        font-size: 36px;
+        font-weight: 700;
+        text-align: right;
+      }
+
+      .cta {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(280px, 380px);
+        gap: 36px;
+        align-items: start;
+      }
+
+      .cta-box {
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: var(--paper);
+        padding: 24px;
+      }
+
+      .cta-box p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .cta-box strong {
+        display: block;
+        color: var(--navy);
+        margin-bottom: 8px;
+      }
+
+      .cta-list {
+        margin: 20px 0 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .cta-list li {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 12px 0;
+      }
+
+      footer {
+        border-top: 1px solid var(--line);
+        color: var(--muted);
+        padding: 24px 32px;
+      }
+
+      footer .inner {
+        display: flex;
+        justify-content: space-between;
+        gap: 18px;
+      }
+
+      @media (max-width: 860px) {
+        .nav {
+          position: static;
+          padding: 14px 20px;
+        }
+
+        .nav-links {
+          display: none;
+        }
+
+        .hero {
+          min-height: auto;
+          padding: 76px 20px 60px;
+        }
+
+        .hero-map {
+          opacity: .28;
+          transform: none;
+          -webkit-mask-image: none;
+          mask-image: none;
+        }
+
+        h1 {
+          font-size: 48px;
+        }
+
+        h2 {
+          font-size: 34px;
+        }
+
+        section {
+          padding: 56px 20px;
+        }
+
+        .section-head,
+        .offer-panel,
+        .timeline,
+        .price,
+        .cta {
+          grid-template-columns: 1fr;
+        }
+
+        .row {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .gargalos {
+          grid-template-columns: 1fr;
+        }
+
+        .deliverables {
+          columns: 1;
+        }
+
+        .price-value {
+          text-align: left;
+        }
+
+        footer .inner {
+          display: block;
+        }
+      }
+
+      @media (max-width: 480px) {
+        h1 {
+          font-size: 40px;
+        }
+
+        .hero-lead {
+          font-size: 19px;
+        }
+
+        .hero-actions {
+          align-items: stretch;
+          flex-direction: column;
+        }
+
+        .button {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="nav" aria-label="Principal">
+      <a class="brand" href="#top" aria-label="AIFBR Advisory">
+        <span class="mark" aria-hidden="true">
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+          <span></span><span></span><span></span>
+        </span>
+        <span class="brand-name">AIFBR Advisory</span>
+      </a>
+      <div class="nav-links">
+        <a href="#problema">Problema</a>
+        <a href="#oferta">Oferta</a>
+        <a href="#processo">48h</a>
+        <a href="#preco">Preço</a>
+        <a href="#cta">CTA</a>
+      </div>
+    </nav>
+
+    <main id="top">
+      <header class="hero">
+        <svg class="hero-map" viewBox="0 0 1440 760" role="img" aria-label="Mapa operacional do diagnóstico">
+          <g fill="none" stroke="currentColor" stroke-width="1.2">
+            <path d="M86 154h256v90H86z"></path>
+            <path d="M86 300h256v90H86z"></path>
+            <path d="M86 446h256v90H86z"></path>
+            <path d="M484 205h274v118H484z"></path>
+            <path d="M484 392h274v118H484z"></path>
+            <path d="M898 250h330v178H898z"></path>
+            <path d="M342 199h142"></path>
+            <path d="M342 345h102c24 0 40-16 40-40"></path>
+            <path d="M342 491h102c24 0 40 16 40 40"></path>
+            <path d="M758 264h140"></path>
+            <path d="M758 451h140"></path>
+            <path d="M1062 428v118h180"></path>
+          </g>
+          <g fill="currentColor" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700">
+            <text x="112" y="206">Atendimento</text>
+            <text x="112" y="352">Vendas</text>
+            <text x="112" y="498">Operação</text>
+            <text x="520" y="270">Custo invisível</text>
+            <text x="520" y="457">Impacto x esforço</text>
+            <text x="940" y="342">Plano 30 dias</text>
+          </g>
+        </svg>
+        <div class="hero-content">
+          <p class="service">Diagnóstico IA 48h</p>
+          <h1>IA aplicada onde a operação já está perdendo dinheiro.</h1>
+          <p class="hero-lead">
+            Em 48h, a AIFBR mapeia gargalos, estima custo invisível e prioriza quick wins aplicáveis nos próximos 30 dias.
+          </p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#cta">Pedir diagnóstico</a>
+            <a class="button button-secondary" href="#processo">Ver processo</a>
+            <span class="hero-note">Sem venda de ferramenta. Sem consultoria abstrata.</span>
+          </div>
+        </div>
+      </header>
+
+      <section id="problema">
+        <div class="inner">
+          <div class="section-head">
+            <span class="section-label">Problema</span>
+            <div>
+              <h2>Empresa real, processo manual demais.</h2>
+              <p class="section-copy">
+                A dor não é "precisar de IA". É perder venda, tempo e controle porque a operação roda em WhatsApp, planilha, CRM simples e decisão centralizada no dono.
+              </p>
+            </div>
+          </div>
+          <div class="rows">
+            <div class="row">
+              <h3>Tempo some</h3>
+              <p>Retrabalho, copiar e colar dados, proposta manual, relatório atrasado e tarefa repetida toda semana.</p>
+            </div>
+            <div class="row">
+              <h3>Venda escapa</h3>
+              <p>Follow-up inconsistente, lead esquecido, atendimento lento e baixa visibilidade do funil.</p>
+            </div>
+            <div class="row">
+              <h3>Gestão depende do dono</h3>
+              <p>Decisão presa em pessoas específicas, rotina sem métrica clara e qualidade variando conforme quem executa.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="oferta" class="band">
+        <div class="inner">
+          <div class="section-head">
+            <span class="section-label">Oferta</span>
+            <div>
+              <h2>Um diagnóstico curto para sair com frente clara.</h2>
+              <p class="section-copy">
+                O trabalho transforma uma operação confusa em lista priorizada: o que atacar agora, o que virar sprint e o que ignorar.
+              </p>
+            </div>
+          </div>
+          <div class="offer-panel">
+            <div class="offer-copy">
+              <p>
+                Em 48h, localizar o gargalo principal, estimar o custo invisível e desenhar quick wins de IA sem depender de troca completa de sistema.
+              </p>
+            </div>
+            <div class="metric-list" aria-label="Resumo da oferta">
+              <div class="metric">
+                <span>Cliente ideal</span>
+                <strong>PME com operação ativa</strong>
+              </div>
+              <div class="metric">
+                <span>Formato</span>
+                <strong>Diagnóstico + devolutiva</strong>
+              </div>
+              <div class="metric">
+                <span>Saída</span>
+                <strong>Plano de 30 dias</strong>
+              </div>
+              <div class="metric">
+                <span>Continuidade</span>
+                <strong>Sprint ou operação mensal</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="processo" class="dark-band">
+        <div class="inner">
+          <div class="section-head">
+            <span class="section-label">Processo 48h</span>
+            <div>
+              <h2>Dois dias. Uma recomendação executiva.</h2>
+              <p class="section-copy">
+                O processo é curto para evitar diagnóstico eterno. Primeiro entende a operação. Depois transforma o gargalo em plano mensurável.
+              </p>
+            </div>
+          </div>
+          <div class="timeline">
+            <article class="day">
+              <h3>Dia 1: Diagnóstico</h3>
+              <p>Entender operação, ferramentas atuais e perdas de tempo, venda, qualidade ou visibilidade.</p>
+              <ul>
+                <li>Mapear processos críticos.</li>
+                <li>Identificar retrabalho e falhas.</li>
+                <li>Priorizar gargalos por impacto.</li>
+              </ul>
+            </article>
+            <article class="day">
+              <h3>Dia 2: Plano</h3>
+              <p>Desenhar quick wins, estimar esforço e montar a recomendação para os próximos 30 dias.</p>
+              <ul>
+                <li>Separar quick win de distração.</li>
+                <li>Criar exemplo aplicado, se fizer sentido.</li>
+                <li>Apresentar plano executivo.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="gargalos">
+        <div class="inner">
+          <div class="section-head">
+            <span class="section-label">Exemplos de gargalos</span>
+            <div>
+              <h2>Onde a IA entra primeiro.</h2>
+              <p class="section-copy">
+                O foco é tarefa frequente, dado disponível e resultado que o dono percebe sem precisar mudar a empresa inteira.
+              </p>
+            </div>
+          </div>
+          <div class="gargalos">
+            <div class="gargalo">
+              <strong>Follow-up comercial</strong>
+              <span>Lead sem retorno, proposta parada e CRM atualizado tarde.</span>
+            </div>
+            <div class="gargalo">
+              <strong>Atendimento repetitivo</strong>
+              <span>Perguntas recorrentes, triagem manual e resposta fora do padrão.</span>
+            </div>
+            <div class="gargalo">
+              <strong>Documentos operacionais</strong>
+              <span>Proposta, resumo, relatório e checklist refeitos do zero.</span>
+            </div>
+            <div class="gargalo">
+              <strong>Visibilidade de funil</strong>
+              <span>Dado espalhado em WhatsApp, planilha e ferramenta simples.</span>
+            </div>
+            <div class="gargalo">
+              <strong>Retrabalho interno</strong>
+              <span>Copiar, colar, conferir e repassar informação entre áreas.</span>
+            </div>
+            <div class="gargalo">
+              <strong>Decisão centralizada</strong>
+              <span>Dono vira roteador de exceção, aprovação e informação.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="entregaveis" class="band">
+        <div class="inner">
+          <div class="section-head">
+            <span class="section-label">Entregáveis</span>
+            <div>
+              <h2>O que fica na mão do cliente.</h2>
+              <p class="section-copy">
+                Entrega objetiva para decidir se executa uma sprint, contrata operação mensal, treina o time ou arquiva a frente.
+              </p>
+            </div>
+          </div>
+          <ul class="deliverables">
+            <li>
+              <strong>Mapa dos gargalos</strong>
+              <span>Processos críticos com perda visível.</span>
+            </li>
+            <li>
+              <strong>Custo invisível estimado</strong>
+              <span>Frequência, tempo perdido, pessoas e impacto provável.</span>
+            </li>
+            <li>
+              <strong>Oportunidades por área</strong>
+              <span>Vendas, atendimento, operação, gestão e qualidade.</span>
+            </li>
+            <li>
+              <strong>Matriz impacto x esforço</strong>
+              <span>Quick wins, projetos estratégicos, melhorias simples e distrações.</span>
+            </li>
+            <li>
+              <strong>Protótipo simples</strong>
+              <span>Quando ajuda a provar o caso sem inflar escopo.</span>
+            </li>
+            <li>
+              <strong>Plano de implantação 30 dias</strong>
+              <span>Semanas, métrica principal, riscos e próximo passo comercial.</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="preco" class="dark-band">
+        <div class="inner">
+          <div class="section-head">
+            <span class="section-label">Preço / faixa inicial</span>
+            <div>
+              <h2>Baixa fricção para começar com empresa certa.</h2>
+              <p class="section-copy">
+                Gratuito para lead estratégico quando há fit claro. Pago para empresa fria ou demanda pontual.
+              </p>
+            </div>
+          </div>
+          <div class="price">
+            <div>
+              <h3>Diagnóstico IA 48h</h3>
+              <p>Faixa inicial conforme contexto, urgência, acesso a dados e necessidade de protótipo.</p>
+            </div>
+            <div class="price-value">R$ 497 a R$ 1.500</div>
+          </div>
+        </div>
+      </section>
+
+      <section id="cta">
+        <div class="inner cta">
+          <div>
+            <div class="section-label">CTA</div>
+            <h2>Começar pelo gargalo mais caro.</h2>
+            <p class="section-copy">
+              O primeiro contato precisa trazer contexto suficiente para decidir fit, não um pedido genérico de "usar IA".
+            </p>
+            <div class="hero-actions">
+              <a class="button button-primary" href="mailto:?subject=Diagnostico%20IA%2048h&body=Area%3A%0AGargalo%3A%0AFerramentas%20atuais%3A%0AResultado%20esperado%3A">Rascunhar pedido</a>
+              <a class="button button-outline" href="#processo">Rever processo</a>
+            </div>
+          </div>
+          <aside class="cta-box">
+            <strong>Enviar no primeiro contato</strong>
+            <p>Três linhas já bastam para qualificar a conversa.</p>
+            <ul class="cta-list">
+              <li>Área onde mais perde tempo ou venda.</li>
+              <li>Ferramentas usadas hoje: WhatsApp, planilha, CRM, ERP.</li>
+              <li>Resultado que faria 30 dias valerem a pena.</li>
+            </ul>
+          </aside>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="inner">
+        <span>AIFBR Advisory</span>
+        <span>Diagnóstico IA 48h</span>
+      </div>
+    </footer>
+  </body>
+</html>
