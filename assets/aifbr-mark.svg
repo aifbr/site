@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-labelledby="aifbr-favicon-title aifbr-favicon-desc">
+  <title id="aifbr-favicon-title">AIFBR favicon candidate</title>
+  <desc id="aifbr-favicon-desc">Compact 3x3 AIFBR matrix mark in navy, champagne, porcelain and copper.</desc>
+  <rect width="64" height="64" rx="10" fill="#0d1330"/>
+  <rect x="9" y="9" width="12" height="12" rx="3" fill="#d7b36a"/>
+  <rect x="26" y="9" width="12" height="12" rx="3" fill="#d7b36a"/>
+  <rect x="43" y="9" width="12" height="12" rx="3" fill="#f7f6f1" opacity=".18"/>
+  <rect x="9" y="26" width="12" height="12" rx="3" fill="#d7b36a"/>
+  <rect x="26" y="26" width="12" height="12" rx="3" fill="#d7b36a"/>
+  <rect x="43" y="26" width="12" height="12" rx="3" fill="#f7f6f1" opacity=".18"/>
+  <rect x="9" y="43" width="12" height="12" rx="3" fill="#d7b36a"/>
+  <rect x="26" y="43" width="12" height="12" rx="3" fill="#f7f6f1" opacity=".18"/>
+  <rect x="43" y="43" width="12" height="12" rx="3" fill="#c76542"/>
+</svg>

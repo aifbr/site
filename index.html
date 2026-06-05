@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>AIFBR Advisory - Diagnóstico IA 48h</title>
+    <link rel="icon" href="assets/aifbr-mark.svg" type="image/svg+xml">
     <meta
       name="description"
       content="Diagnóstico em 48h para mapear gargalos, estimar custo invisível e priorizar quick wins de IA aplicáveis em 30 dias."
@@ -66,28 +67,11 @@
         text-decoration: none;
       }
 
-      .mark {
-        display: grid;
+      .brand-icon {
         width: 28px;
         height: 28px;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 3px;
-        border: 1px solid rgba(251, 250, 247, .18);
+        display: block;
         border-radius: 7px;
-        padding: 3px;
-      }
-
-      .mark span {
-        border-radius: 2px;
-        background: rgba(251, 250, 247, .86);
-      }
-
-      .mark span:nth-child(5) {
-        background: var(--gold);
-      }
-
-      .mark span:nth-child(9) {
-        background: var(--copper);
       }
 
       .brand-name {
@@ -586,11 +570,7 @@
   <body>
     <nav class="nav" aria-label="Principal">
       <a class="brand" href="#top" aria-label="AIFBR Advisory">
-        <span class="mark" aria-hidden="true">
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-          <span></span><span></span><span></span>
-        </span>
+        <img class="brand-icon" src="assets/aifbr-mark.svg" alt="" width="28" height="28" aria-hidden="true">
         <span class="brand-name">AIFBR Advisory</span>
       </a>
       <div class="nav-links">

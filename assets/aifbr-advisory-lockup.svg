@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="aifbr-advisory-lockup-title aifbr-advisory-lockup-desc">
+  <title id="aifbr-advisory-lockup-title">AIFBR Advisory lockup</title>
+  <desc id="aifbr-advisory-lockup-desc">AIFBR Advisory wordmark with a 3x3 matrix symbol in the approved navy, porcelain, champagne and copper palette.</desc>
+  <defs>
+    <style>
+      .navy{fill:#0d1330}.porcelain{fill:#f7f6f1}.champagne{fill:#d7b36a}.copper{fill:#c76542}.word{font-family:Aptos,"Segoe UI",Arial,sans-serif;font-weight:950;letter-spacing:0}.descriptor{font-family:Aptos,"Segoe UI",Arial,sans-serif;font-weight:760;letter-spacing:0}
+    </style>
+  </defs>
+  <g>
+    <rect class="navy" x="28" y="28" width="124" height="124" rx="18"/>
+    <rect class="champagne" x="42" y="42" width="24" height="24" rx="5"/>
+    <rect class="champagne" x="78" y="42" width="24" height="24" rx="5"/>
+    <rect class="porcelain" x="114" y="42" width="24" height="24" rx="5" opacity=".18"/>
+    <rect class="champagne" x="42" y="78" width="24" height="24" rx="5"/>
+    <rect class="champagne" x="78" y="78" width="24" height="24" rx="5"/>
+    <rect class="porcelain" x="114" y="78" width="24" height="24" rx="5" opacity=".18"/>
+    <rect class="champagne" x="42" y="114" width="24" height="24" rx="5"/>
+    <rect class="porcelain" x="78" y="114" width="24" height="24" rx="5" opacity=".18"/>
+    <rect class="copper" x="114" y="114" width="24" height="24" rx="5"/>
+  </g>
+  <text x="184" y="111" font-size="66">
+    <tspan class="word navy">AIFBR</tspan>
+    <tspan class="descriptor copper"> Advisory</tspan>
+  </text>
+</svg>
